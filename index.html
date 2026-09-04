@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulador de Recrutamento · NewBroker Master</title>
+<meta name="description" content="Responda em menos de 1 minuto e descubra o próximo passo para integrar a equipa NewBroker Master.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --principal:#056195;
+  --destaque:#43a8b3;
+  --fundo:#F5FAFC;
+  --texto:#123547;
+  --suave:#5b7b8c;
+  --borda:#dce9f0;
+  --branco:#fff;
+  --erro:#c0392b;
+  --erro-bg:#fdf2f0;
+  --r:22px;
+  --gut:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--fundo);color:var(--texto);line-height:1.55;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select{font-family:inherit;font-size:16px}
+.serif{font-family:'Instrument Sans','Inter',system-ui,sans-serif;font-weight:600;letter-spacing:-.03em}
+
+.home{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  padding:18px;
+  overflow:hidden;
+}
+.palco{
+  position:relative;flex:1;
+  border-radius:var(--r);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  isolation:isolate;
+}
+.palco-bg{
+  position:absolute;inset:0;z-index:-2;
+  width:100%;height:100%;object-fit:cover;
+}
+.palco::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg,rgba(3,42,72,.50) 0%,rgba(3,42,72,.46) 22%,rgba(3,36,62,.76) 54%,rgba(2,28,48,.92) 78%,rgba(2,24,42,.96) 100%),
+    linear-gradient(112deg,rgba(4,72,116,.60) 0%,rgba(30,120,140,.26) 54%,rgba(3,40,68,.22) 100%);
+}
+.barra{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding:20px var(--gut) 0;
+}
+.marca{display:inline-flex;align-items:center;color:#fff}
+.marca-logo{height:38px;width:auto;display:block}
+.barra-sel{
+  display:none;font-size:10.5px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.7);
+}
+.chamada{
+  flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--gut) var(--gut);position:relative;
+}
+.tag{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);
+  border:1px solid rgba(255,255,255,.28);
+  padding:7px 14px;border-radius:99px;margin-bottom:22px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.tag i{width:5px;height:5px;border-radius:50%;background:var(--destaque);display:block}
+.chamada h1{
+  color:#fff;font-weight:600;
+  font-size:clamp(31px,7.6vw,58px);
+  line-height:1.08;letter-spacing:-.028em;
+  text-wrap:balance;max-width:17ch;
+}
+.chamada h1 em{
+  font-style:normal;font-weight:600;
+  color:#BFEAF2;
+  letter-spacing:-.028em;
+}
+.chamada .sub{
+  margin-top:18px;max-width:56ch;
+  font-size:14.5px;line-height:1.62;color:rgba(255,255,255,.82);
+  text-wrap:pretty;
+}
+.acao{margin-top:26px}
+.btn-inicio{
+  display:inline-flex;align-items:center;gap:14px;
+  background:#fff;color:var(--texto);
+  padding:7px 7px 7px 24px;border-radius:99px;
+  font-weight:600;font-size:15.5px;
+  box-shadow:0 14px 40px rgba(4,40,62,.34);
+  transition:transform .18s ease;
+}
+.btn-inicio:active{transform:scale(.98)}
+.btn-inicio span.seta{
+  width:42px;height:42px;border-radius:50%;flex:0 0 auto;
+  background:var(--principal);color:#fff;
+  display:grid;place-items:center;
+}
+.selos{
+  display:flex;align-items:flex-start;
+  gap:0;margin-top:30px;
+  border-top:1px solid rgba(255,255,255,.2);
+  padding-top:16px;
+}
+.selo{flex:1;padding-right:14px;position:relative;color:#fff}
+.selo + .selo{padding-left:16px}
+.selo + .selo::before{
+  content:'';position:absolute;left:0;top:2px;bottom:2px;
+  width:1px;background:rgba(255,255,255,.2);
+}
+.selo b{
+  display:block;font-family:'Instrument Sans','Inter',sans-serif;
+  font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1;
+}
+.selo span{
+  display:block;font-size:10px;font-weight:500;letter-spacing:.09em;
+  text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:7px;
+}
+@media(min-width:900px){
+  :root{--gut:44px}
+  .home{padding:22px}
+  .barra{padding:26px var(--gut) 0}
+  .marca-logo{height:44px}
+  .barra-sel{display:block}
+  .chamada .sub{font-size:16px;margin-top:22px}
+  .selos{max-width:620px;margin-top:38px;padding-top:20px}
+  .selo b{font-size:23px}
+}
+
+.quiz-zona{padding:56px 18px 70px;background:var(--fundo)}
+.quiz-topo{max-width:680px;margin:0 auto 22px;text-align:center}
+.quiz-topo .kicker{
+  font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--destaque);margin-bottom:12px;
+}
+.quiz-topo h2{
+  font-weight:400;font-size:clamp(29px,7vw,46px);
+  line-height:1.04;letter-spacing:-.03em;
+}
+.quiz-topo h2 em{font-style:italic;color:var(--principal)}
+.quiz{
+  max-width:680px;margin:0 auto;background:var(--branco);
+  border:1px solid var(--borda);border-radius:var(--r);
+  box-shadow:0 20px 60px rgba(18,53,71,.07);
+  padding:28px 22px 30px;
+}
+.prog-topo{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.prog-topo span{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--suave)}
+.prog-topo b{font-size:12px;color:var(--principal);font-weight:700}
+.prog{height:3px;background:#e6f0f5;border-radius:99px;overflow:hidden;margin-bottom:28px}
+.prog i{display:block;height:100%;width:50%;border-radius:99px;background:linear-gradient(90deg,var(--principal),var(--destaque));transition:width .5s cubic-bezier(.22,1,.36,1)}
+.passo{display:none;animation:sobe .34s ease}
+.passo.on{display:block}
+@keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.passo h3{font-weight:400;font-size:25px;letter-spacing:-.025em;line-height:1.15;margin-bottom:5px}
+.passo>p.intro{font-size:13.5px;color:var(--suave);margin-bottom:26px}
+.campo{margin-bottom:24px}
+.rot{display:block;font-size:14.5px;font-weight:600;margin-bottom:10px}
+.rot small{display:block;font-weight:400;font-size:12.5px;color:var(--suave);margin-top:3px;line-height:1.45}
+.opcoes{display:grid;gap:10px}
+.op{
+  border:1px solid var(--borda);background:var(--branco);
+  border-radius:13px;padding:15px 16px;text-align:left;
+  font-size:14px;line-height:1.4;
+  transition:all .16s ease;
+}
+.op:hover{border-color:var(--destaque);background:#fbfdfe}
+.op[aria-pressed="true"]{
+  border-color:var(--principal);background:#eff7fb;
+  color:var(--principal);font-weight:600;box-shadow:inset 0 0 0 1px var(--principal);
+}
+input[type=text],input[type=email],input[type=tel]{
+  width:100%;border:1px solid var(--borda);border-radius:13px;
+  padding:14px;background:var(--branco);color:var(--texto);
+  transition:border-color .16s ease,box-shadow .16s ease;
+}
+input:focus{outline:none;border-color:var(--principal);box-shadow:0 0 0 3px rgba(5,97,149,.1)}
+.campo.mau .op,.campo.mau input{border-color:var(--erro);background:var(--erro-bg)}
+.campo.mau .op[aria-pressed="true"]{background:#eff7fb;border-color:var(--principal)}
+.msg-erro{display:none;font-size:12.5px;color:var(--erro);margin-top:8px;font-weight:500}
+.campo.mau .msg-erro{display:block}
+.consent{display:flex;gap:12px;align-items:flex-start;background:var(--fundo);border:1px solid var(--borda);border-radius:14px;padding:15px}
+.consent input{width:19px;height:19px;flex:0 0 auto;margin-top:1px;accent-color:var(--principal)}
+.consent label{font-size:13px;color:var(--suave);line-height:1.5}
+.navs{display:flex;gap:10px;margin-top:30px}
+.btn{padding:16px 22px;border-radius:99px;font-weight:600;font-size:15px;transition:opacity .16s ease,transform .16s ease}
+.btn:active{transform:scale(.985)}
+.btn-p{flex:1;background:var(--principal);color:#fff;box-shadow:0 10px 26px rgba(5,97,149,.24)}
+.btn-p:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-s{flex:0 0 auto;background:var(--branco);color:var(--suave);border:1px solid var(--borda)}
+.rodape{padding:0 18px 44px;text-align:center;font-size:11.5px;color:var(--suave);line-height:1.7}
+.cookies{position:fixed;left:12px;right:12px;bottom:12px;z-index:80;background:var(--branco);border:1px solid var(--borda);border-radius:18px;padding:18px;box-shadow:0 18px 50px rgba(18,53,71,.22);display:none}
+.cookies.on{display:block}
+.cookies p{font-size:13px;color:var(--suave);margin-bottom:14px;line-height:1.55}
+.cookies .linha{display:flex;gap:9px}
+.cookies button{flex:1;padding:12px;border-radius:99px;font-weight:600;font-size:14px}
+.ck-sim{background:var(--principal);color:#fff}
+.ck-nao{background:var(--fundo);color:var(--suave);border:1px solid var(--borda)}
+@media(min-width:900px){.cookies{left:auto;right:26px;bottom:26px;max-width:400px}}
+</style>
+<script>
+var PIXEL_ID    = '1362604455287759';
+var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/GDVviUEQV7vi5vKVVdyV/webhook-trigger/Xnq2Kxs7WHtXHPzVy9BV';
+var ORIGEM      = 'Simulador Recrutamento NewBroker';
+var PREFIXO_PAIS = '351';
+var CHAVE_UNICA = 'recrutamento_newbrokermaster';
+var CHAVE_CONSENTIMENTO = CHAVE_UNICA + '_cookies';
+var WHATSAPP_NUM = '351966157771';
+var INSTAGRAM    = 'https://www.instagram.com/newbrokermaster/';
+var POLITICA     = '';
+var PIXEL_ATIVO   = PIXEL_ID.indexOf('AQUI') === -1;
+var WEBHOOK_ATIVO = WEBHOOK_URL.indexOf('AQUI') === -1 && WEBHOOK_URL !== '';
+
+function carregarPixel(){
+  if(!PIXEL_ATIVO || window.fbq) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', PIXEL_ID);
+  fbq('track','PageView');
+}
+function temConsentimento(){
+  try { return localStorage.getItem(CHAVE_CONSENTIMENTO) === 'aceite'; }
+  catch(e){ return false; }
+}
+if (temConsentimento()) carregarPixel();
+</script>
+</head>
+<body>
+<header class="home">
+  <div class="palco">
+    <img class="palco-bg" alt="Cozinha moderna" src="hero.jpg" fetchpriority="high" decoding="async">
+    <div class="barra">
+      <a class="marca" href="#" onclick="return false" aria-label="NewBroker Master Imobiliária">
+        <img src="logo_branca.png" alt="NewBroker Master" class="marca-logo">
+      </a>
+      <span class="barra-sel">Simulador de recrutamento</span>
+    </div>
+    <div class="chamada">
+      <span class="tag"><i aria-hidden="true"></i> Recrutamento NewBroker</span>
+      <h1 class="serif">Quer juntar-se à NewBroker? <em>Descubra o próximo passo em menos de 1 minuto.</em></h1>
+      <p class="sub">Tenha ou não experiência no mercado imobiliário, queremos conhecer o seu perfil. Responda ao simulador e deixe os seus dados para ser contactado pela nossa equipa.</p>
+      <div class="acao">
+        <button class="btn-inicio" onclick="irParaQuiz()">
+          Começar agora
+          <span class="seta" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </span>
+        </button>
+      </div>
+      <div class="selos">
+        <div class="selo"><b>1</b><span>minuto</span></div>
+        <div class="selo"><b>2</b><span>passos</span></div>
+        <div class="selo"><b>0 €</b><span>sem compromisso</span></div>
+        <div class="selo"><b>Rápido</b><span>contacto direto</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="quiz-zona" id="quiz-zona">
+  <div class="quiz-topo">
+    <div class="kicker">Recrutamento</div>
+    <h2 class="serif">Dê o primeiro passo para integrar a <em>equipa NewBroker</em></h2>
+  </div>
+
+  <section class="quiz" id="quiz">
+    <div class="prog-topo">
+      <span id="lbl-passo">Passo 1 de 2</span>
+      <b id="lbl-pct">50%</b>
+    </div>
+    <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Progresso do simulador">
+      <i id="barra"></i>
+    </div>
+
+    <div class="passo on" data-p="1">
+      <h3 class="serif">Comecemos pelo essencial</h3>
+      <p class="intro">Queremos perceber rapidamente o seu ponto de partida.</p>
+
+      <div class="campo" data-c="experiencia">
+        <span class="rot" id="r-experiencia">Já tens experiência no mercado imobiliário?
+          <small>Escolha a opção que melhor descreve a sua situação.</small>
+        </span>
+        <div class="opcoes" role="group" aria-labelledby="r-experiencia" data-grupo="experiencia">
+          <button type="button" class="op" aria-pressed="false" data-v="Sim, já tenho experiência">Sim, já tenho experiência</button>
+          <button type="button" class="op" aria-pressed="false" data-v="Não, procuro a minha oportunidade">Não, procuro a minha oportunidade</button>
+        </div>
+        <p class="msg-erro">Escolha uma opção para continuar.</p>
+      </div>
+    </div>
+
+    <div class="passo" data-p="2">
+      <h3 class="serif">Agora deixe os seus dados</h3>
+      <p class="intro">Assim que terminar, a nossa equipa poderá entrar em contacto consigo.</p>
+
+      <div class="campo" data-c="nome">
+        <label class="rot" for="i-nome">Nome completo</label>
+        <input type="text" id="i-nome" placeholder="O seu nome completo">
+        <p class="msg-erro">Preencha o seu nome completo.</p>
+      </div>
+
+      <div class="campo" data-c="email">
+        <label class="rot" for="i-email">E-mail</label>
+        <input type="email" id="i-email" placeholder="nome@exemplo.com">
+        <p class="msg-erro">Introduza um e-mail válido.</p>
+      </div>
+
+      <div class="campo" data-c="tel">
+        <label class="rot" for="i-tel">Telemóvel</label>
+        <input type="tel" id="i-tel" placeholder="912 345 678">
+        <p class="msg-erro">Introduza um número de telemóvel válido.</p>
+      </div>
+
+      <div class="campo" data-c="rgpd">
+        <div class="consent">
+          <input type="checkbox" id="i-rgpd">
+          <label for="i-rgpd">Autorizo o tratamento dos meus dados para contacto relativo a oportunidades de recrutamento da NewBroker Master.</label>
+        </div>
+        <p class="msg-erro">Precisa de dar consentimento para continuar.</p>
+      </div>
+    </div>
+
+    <div class="navs">
+      <button type="button" class="btn btn-s" id="btn-voltar" onclick="voltar()" style="display:none">Voltar</button>
+      <button type="button" class="btn btn-p" id="btn-avancar" onclick="avancar()">Continuar</button>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  NewBroker Master · Simulador de recrutamento
+</footer>
+
+<div class="cookies" id="cookies">
+  <p>Utilizamos cookies para melhorar a experiência e medir o desempenho do simulador. Pode aceitar ou recusar.</p>
+  <div class="linha">
+    <button class="ck-nao" onclick="definirConsentimento('recusado')">Recusar</button>
+    <button class="ck-sim" onclick="definirConsentimento('aceite')">Aceitar</button>
+  </div>
+</div>
+
+<script>
+var passo = 1;
+var totalPassos = 2;
+var A = {
+  experiencia:'',
+  nome:'',
+  email:'',
+  tel:'',
+  rgpd:false
+};
+var aEnviar = false;
+
+function irParaQuiz(){
+  document.getElementById('quiz-zona').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function definirConsentimento(valor){
+  try { localStorage.setItem(CHAVE_CONSENTIMENTO, valor); } catch(e){}
+  document.getElementById('cookies').classList.remove('on');
+  if(valor === 'aceite') carregarPixel();
+}
+(function iniciarCookies(){
+  var c = null;
+  try { c = localStorage.getItem(CHAVE_CONSENTIMENTO); } catch(e){}
+  if(c !== 'aceite' && c !== 'recusado'){
+    window.addEventListener('load', function(){
+      document.getElementById('cookies').classList.add('on');
+    });
+  }
+})();
+
+function qs(sel,ctx){ return (ctx||document).querySelector(sel); }
+function qsa(sel,ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
+
+qsa('[data-grupo]').forEach(function(grupo){
+  grupo.addEventListener('click', function(ev){
+    var btn = ev.target.closest('.op');
+    if(!btn) return;
+    qsa('.op', grupo).forEach(function(el){ el.setAttribute('aria-pressed','false'); });
+    btn.setAttribute('aria-pressed','true');
+    var campo = grupo.closest('.campo');
+    if(campo) campo.classList.remove('mau');
+  });
+});
+
+['i-nome','i-email','i-tel'].forEach(function(id){
+  var el = document.getElementById(id);
+  el.addEventListener('input', function(){
+    var campo = this.closest('.campo');
+    if(campo) campo.classList.remove('mau');
+  });
+});
+document.getElementById('i-rgpd').addEventListener('change', function(){
+  this.closest('.campo').classList.remove('mau');
+});
+
+function atualizarUI(){
+  qsa('.passo').forEach(function(el){ el.classList.remove('on'); });
+  var passoEl = qs('.passo[data-p="'+passo+'"]');
+  if(passoEl) passoEl.classList.add('on');
+  var pct = Math.round((passo/totalPassos)*100);
+  qs('#lbl-passo').textContent = 'Passo ' + passo + ' de ' + totalPassos;
+  qs('#lbl-pct').textContent = pct + '%';
+  qs('#barra').style.width = pct + '%';
+  qs('.prog').setAttribute('aria-valuenow', pct);
+  qs('#btn-voltar').style.display = passo === 1 ? 'none' : 'inline-flex';
+  qs('#btn-avancar').textContent = passo === totalPassos ? 'Ver resultado' : 'Continuar';
+}
+
+function validarPasso1(){
+  var campo = qs('[data-c="experiencia"]');
+  var ativo = qs('.op[aria-pressed="true"]', campo);
+  if(!ativo){ campo.classList.add('mau'); return false; }
+  A.experiencia = ativo.getAttribute('data-v');
+  return true;
+}
+
+function emailValido(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim()); }
+function telValido(v){
+  var d = (v||'').replace(/\D/g,'');
+  return d.length >= 9;
+}
+function normalizarTel(v){
+  var d = (v || '').replace(/\D/g,'');
+  if(!d) return '';
+  if(d.indexOf('00') === 0) d = d.slice(2);
+  if(d.length === 9) d = PREFIXO_PAIS + d;
+  return '+' + d;
+}
+
+function validarPasso2(){
+  var ok = true;
+  var nome = qs('#i-nome').value.trim();
+  var email = qs('#i-email').value.trim();
+  var tel = qs('#i-tel').value.trim();
+  var rgpd = qs('#i-rgpd').checked;
+
+  var cNome = qs('[data-c="nome"]');
+  var cEmail = qs('[data-c="email"]');
+  var cTel = qs('[data-c="tel"]');
+  var cRgpd = qs('[data-c="rgpd"]');
+  [cNome,cEmail,cTel,cRgpd].forEach(function(c){ c.classList.remove('mau'); });
+
+  if(nome.length < 4){ cNome.classList.add('mau'); ok = false; }
+  if(!emailValido(email)){ cEmail.classList.add('mau'); ok = false; }
+  if(!telValido(tel)){ cTel.classList.add('mau'); ok = false; }
+  if(!rgpd){ cRgpd.classList.add('mau'); ok = false; }
+  if(!ok) return false;
+
+  A.nome = nome;
+  A.email = email;
+  A.tel = tel;
+  A.rgpd = rgpd;
+  return true;
+}
+
+function avancar(){
+  if(aEnviar) return;
+  var valido = passo === 1 ? validarPasso1() : validarPasso2();
+  if(!valido) return;
+  if(passo < totalPassos){
+    passo++;
+    atualizarUI();
+    window.scrollTo({top: document.getElementById('quiz-zona').offsetTop - 10, behavior:'smooth'});
+    return;
+  }
+  finalizar();
+}
+
+function voltar(){
+  if(passo === 1 || aEnviar) return;
+  passo--;
+  atualizarUI();
+  window.scrollTo({top: document.getElementById('quiz-zona').offsetTop - 10, behavior:'smooth'});
+}
+
+function avaliarPerfil(){
+  var comExp = A.experiencia === 'Sim, já tenho experiência';
+  return {
+    perfil: comExp ? 'Perfil com experiência' : 'Perfil em início de carreira',
+    nota: comExp
+      ? 'Já conhece o mercado imobiliário. O próximo passo é perceber o seu contexto e alinhar uma conversa com a equipa.'
+      : 'Não ter experiência não o exclui. Valorizamos atitude, capacidade de comunicação, compromisso e vontade de aprender.'
+  };
+}
+
+function enviarWebhook(tel, first, last, D, eventId){
+  var payload = {
+    name: A.nome,
+    first_name: first,
+    last_name: last,
+    phone: tel,
+    email: A.email,
+    timestamp: new Date().toISOString(),
+    origem: ORIGEM,
+    pagina_url: window.location.href,
+    event_id: eventId,
+    consentimento_rgpd: A.rgpd ? 'Sim' : 'Não',
+    experiencia_imobiliaria: A.experiencia || '',
+    perfil_indicativo: D.perfil,
+    nota_perfil: D.nota,
+    raw: JSON.parse(JSON.stringify(A))
+  };
+
+  if(!WEBHOOK_ATIVO){
+    console.log('[MODO DEMO] Payload que seria enviado ao webhook:', payload);
+    return;
+  }
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    keepalive: true,
+    body: JSON.stringify(payload)
+  }).catch(function(err){
+    console.error('Falha no envio do webhook:', err);
+  });
+}
+
+function finalizar(){
+  if(aEnviar) return;
+  aEnviar = true;
+  var btn = qs('#btn-avancar');
+  btn.disabled = true;
+  btn.textContent = 'A preparar o seu resultado…';
+
+  var D = avaliarPerfil();
+  var tel = normalizarTel(A.tel);
+  var partes = (A.nome || '').trim().split(/\s+/);
+  var first = partes[0] || '';
+  var last = partes.slice(1).join(' ') || '';
+  var eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+
+  try {
+    sessionStorage.setItem(CHAVE_UNICA, JSON.stringify({ A:A, D:D, eventId:eventId, ts:Date.now() }));
+  } catch(e){}
+
+  if(PIXEL_ATIVO && typeof fbq === 'function' && temConsentimento()){
+    fbq('init', PIXEL_ID, { em: A.email, ph: tel, fn: first, ln: last });
+    fbq('track','Lead', {
+      content_name: 'Simulador de Recrutamento',
+      content_category: 'Recrutamento Imobiliário'
+    }, { eventID: eventId });
+  }
+
+  enviarWebhook(tel, first, last, D, eventId);
+
+  var jaFoi = false;
+  var ir = function(){
+    if(jaFoi) return;
+    jaFoi = true;
+    window.location.href = 'resultado.html';
+  };
+  setTimeout(ir, 700);
+  setTimeout(ir, 2200);
+}
+
+atualizarUI();
+</script>
+</body>
+</html>
