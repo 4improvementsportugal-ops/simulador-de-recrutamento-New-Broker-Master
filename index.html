@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Simulador de Recrutamento · NewBroker Master</title>
-<meta name="description" content="Responda em menos de 1 minuto e descubra o próximo passo para integrar a equipa NewBroker Master.">
+<title>Master Business Check-Up · NewBroker Master</title>
+<meta name="description" content="Faz um diagnóstico rápido à tua operação imobiliária atual e identifica onde pode estar o próximo ponto de crescimento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
@@ -216,7 +216,7 @@ input:focus{outline:none;border-color:var(--principal);box-shadow:0 0 0 3px rgba
 <script>
 var PIXEL_ID    = '1362604455287759';
 var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/GDVviUEQV7vi5vKVVdyV/webhook-trigger/Xnq2Kxs7WHtXHPzVy9BV';
-var ORIGEM      = 'Simulador Recrutamento NewBroker';
+var ORIGEM      = 'Master Business Check-Up NewBroker';
 var PREFIXO_PAIS = '351';
 var CHAVE_UNICA = 'recrutamento_newbrokermaster';
 var CHAVE_CONSENTIMENTO = CHAVE_UNICA + '_cookies';
@@ -251,25 +251,25 @@ if (temConsentimento()) carregarPixel();
       <a class="marca" href="#" onclick="return false" aria-label="NewBroker Master Imobiliária">
         <img src="logo_branca.png" alt="NewBroker Master" class="marca-logo">
       </a>
-      <span class="barra-sel">Simulador de recrutamento</span>
+      <span class="barra-sel">Master Business Check-Up</span>
     </div>
     <div class="chamada">
-      <span class="tag"><i aria-hidden="true"></i> Recrutamento NewBroker</span>
-      <h1 class="serif">Quer juntar-se à NewBroker? <em>Descubra o próximo passo em menos de 1 minuto.</em></h1>
-      <p class="sub">Tenha ou não experiência no mercado imobiliário, queremos conhecer o seu perfil. Responda ao simulador e deixe os seus dados para ser contactado pela nossa equipa.</p>
+      <span class="tag"><i aria-hidden="true"></i> Master Business Check-Up</span>
+      <h1 class="serif">Trabalhas no imobiliário? <em>Mas o teu negócio está a crescer ao ritmo que deveria?</em></h1>
+      <p class="sub">Faz um diagnóstico rápido à tua operação atual e identifica onde pode estar o próximo ponto de crescimento.</p>
       <div class="acao">
         <button class="btn-inicio" onclick="irParaQuiz()">
-          Começar agora
+          Fazer diagnóstico
           <span class="seta" aria-hidden="true">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </span>
         </button>
       </div>
       <div class="selos">
-        <div class="selo"><b>1</b><span>minuto</span></div>
-        <div class="selo"><b>2</b><span>passos</span></div>
+        <div class="selo"><b>3</b><span>minutos</span></div>
+        <div class="selo"><b>Privado</b><span>confidencial</span></div>
         <div class="selo"><b>0 €</b><span>sem compromisso</span></div>
-        <div class="selo"><b>Rápido</b><span>contacto direto</span></div>
+        <div class="selo"><b>Rápido</b><span>resultado imediato</span></div>
       </div>
     </div>
   </div>
@@ -277,8 +277,8 @@ if (temConsentimento()) carregarPixel();
 
 <main class="quiz-zona" id="quiz-zona">
   <div class="quiz-topo">
-    <div class="kicker">Recrutamento</div>
-    <h2 class="serif">Dê o primeiro passo para integrar a <em>equipa NewBroker</em></h2>
+    <div class="kicker">Master Business Check-Up</div>
+    <h2 class="serif">Uma primeira leitura do teu <em>negócio imobiliário</em></h2>
   </div>
 
   <section class="quiz" id="quiz">
@@ -291,8 +291,8 @@ if (temConsentimento()) carregarPixel();
     </div>
 
     <div class="passo on" data-p="1">
-      <h3 class="serif">Comecemos pelo essencial</h3>
-      <p class="intro">Queremos perceber rapidamente o seu ponto de partida.</p>
+      <h3 class="serif">Comecemos pelo teu ponto de partida</h3>
+      <p class="intro">Uma pergunta rápida para enquadrar a tua situação atual.</p>
 
       <div class="campo" data-c="experiencia">
         <span class="rot" id="r-experiencia">Já tens experiência no mercado imobiliário?
@@ -307,33 +307,33 @@ if (temConsentimento()) carregarPixel();
     </div>
 
     <div class="passo" data-p="2">
-      <h3 class="serif">Agora deixe os seus dados</h3>
-      <p class="intro">Assim que terminar, a nossa equipa poderá entrar em contacto consigo.</p>
+      <h3 class="serif">Agora deixa os teus dados</h3>
+      <p class="intro">No final, recebe uma primeira leitura e a nossa equipa poderá entrar em contacto contigo.</p>
 
       <div class="campo" data-c="nome">
         <label class="rot" for="i-nome">Nome completo</label>
-        <input type="text" id="i-nome" placeholder="O seu nome completo">
-        <p class="msg-erro">Preencha o seu nome completo.</p>
+        <input type="text" id="i-nome" placeholder="O teu nome completo">
+        <p class="msg-erro">Preenche o teu nome completo.</p>
       </div>
 
       <div class="campo" data-c="email">
         <label class="rot" for="i-email">E-mail</label>
         <input type="email" id="i-email" placeholder="nome@exemplo.com">
-        <p class="msg-erro">Introduza um e-mail válido.</p>
+        <p class="msg-erro">Introduz um e-mail válido.</p>
       </div>
 
       <div class="campo" data-c="tel">
         <label class="rot" for="i-tel">Telemóvel</label>
         <input type="tel" id="i-tel" placeholder="912 345 678">
-        <p class="msg-erro">Introduza um número de telemóvel válido.</p>
+        <p class="msg-erro">Introduz um número de telemóvel válido.</p>
       </div>
 
       <div class="campo" data-c="rgpd">
         <div class="consent">
           <input type="checkbox" id="i-rgpd">
-          <label for="i-rgpd">Autorizo o tratamento dos meus dados para contacto relativo a oportunidades de recrutamento da NewBroker Master.</label>
+          <label for="i-rgpd">Autorizo o tratamento dos meus dados para contacto relativo ao Master Business Check-Up da NewBroker Master.</label>
         </div>
-        <p class="msg-erro">Precisa de dar consentimento para continuar.</p>
+        <p class="msg-erro">Precisas de dar consentimento para continuar.</p>
       </div>
     </div>
 
@@ -345,11 +345,11 @@ if (temConsentimento()) carregarPixel();
 </main>
 
 <footer class="rodape">
-  NewBroker Master · Simulador de recrutamento
+  NewBroker Master · Master Business Check-Up
 </footer>
 
 <div class="cookies" id="cookies">
-  <p>Utilizamos cookies para melhorar a experiência e medir o desempenho do simulador. Pode aceitar ou recusar.</p>
+  <p>Utilizamos cookies para melhorar a experiência e medir o desempenho do diagnóstico. Pode aceitar ou recusar.</p>
   <div class="linha">
     <button class="ck-nao" onclick="definirConsentimento('recusado')">Recusar</button>
     <button class="ck-sim" onclick="definirConsentimento('aceite')">Aceitar</button>
@@ -495,10 +495,10 @@ function voltar(){
 function avaliarPerfil(){
   var comExp = A.experiencia === 'Sim, já tenho experiência';
   return {
-    perfil: comExp ? 'Perfil com experiência' : 'Perfil em início de carreira',
+    perfil: comExp ? 'Primeira leitura concluída' : 'Ponto de partida identificado',
     nota: comExp
-      ? 'Já conhece o mercado imobiliário. O próximo passo é perceber o seu contexto e alinhar uma conversa com a equipa.'
-      : 'Não ter experiência não o exclui. Valorizamos atitude, capacidade de comunicação, compromisso e vontade de aprender.'
+      ? 'Já tens experiência no mercado imobiliário. O próximo passo é perceber com mais detalhe onde está a maior oportunidade de crescimento na tua operação.'
+      : 'Ainda não tens experiência no mercado imobiliário. Esta primeira leitura ajuda a enquadrar o teu ponto de partida e os próximos passos.'
   };
 }
 
@@ -540,7 +540,7 @@ function finalizar(){
   aEnviar = true;
   var btn = qs('#btn-avancar');
   btn.disabled = true;
-  btn.textContent = 'A preparar o seu resultado…';
+  btn.textContent = 'A preparar o teu diagnóstico…';
 
   var D = avaliarPerfil();
   var tel = normalizarTel(A.tel);
@@ -556,8 +556,8 @@ function finalizar(){
   if(PIXEL_ATIVO && typeof fbq === 'function' && temConsentimento()){
     fbq('init', PIXEL_ID, { em: A.email, ph: tel, fn: first, ln: last });
     fbq('track','Lead', {
-      content_name: 'Simulador de Recrutamento',
-      content_category: 'Recrutamento Imobiliário'
+      content_name: 'Master Business Check-Up',
+      content_category: 'Diagnóstico de Negócio Imobiliário'
     }, { eventID: eventId });
   }
 
