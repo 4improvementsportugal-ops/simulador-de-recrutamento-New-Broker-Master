@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Master Business Check-Up · NewBroker Master</title>
-<meta name="description" content="Faz um diagnóstico rápido à tua operação imobiliária atual e identifica onde pode estar o próximo ponto de crescimento.">
+<meta name="description" content="Faz um diagnóstico rápido à tua operação imobiliária e identifica o próximo ponto de crescimento em cerca de 3 minutos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
@@ -212,13 +212,28 @@ input:focus{outline:none;border-color:var(--principal);box-shadow:0 0 0 3px rgba
 .ck-sim{background:var(--principal);color:#fff}
 .ck-nao{background:var(--fundo);color:var(--suave);border:1px solid var(--borda)}
 @media(min-width:900px){.cookies{left:auto;right:26px;bottom:26px;max-width:400px}}
+
+/* MASTER BUSINESS CHECK-UP */
+.valor-grande{display:flex;align-items:center;gap:10px;border:1px solid var(--borda);border-radius:13px;padding:0 14px;background:var(--branco)}
+.valor-grande:focus-within{border-color:var(--principal);box-shadow:0 0 0 3px rgba(5,97,149,.1)}
+.valor-grande .prefixo{font-weight:700;color:var(--principal);font-size:18px}
+.valor-grande input{border:none!important;box-shadow:none!important;padding:14px 0!important;background:transparent!important}
+.unidade{display:flex;align-items:center;gap:10px}.unidade input{flex:1}.unidade span{font-size:13px;font-weight:600;color:var(--suave);white-space:nowrap}
+.range-wrap{padding:8px 2px 2px}.range-topo{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;color:var(--suave);font-size:12px}.range-topo strong{font-size:21px;color:var(--principal)}
+input[type=range]{width:100%;accent-color:var(--principal)}
+.multi{display:grid;gap:8px}.multi label{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--borda);border-radius:13px;padding:13px 14px;background:var(--branco);font-size:14px;line-height:1.35;cursor:pointer}.multi input{width:18px;height:18px;flex:0 0 auto;margin-top:1px;accent-color:var(--principal)}
+.multi label:has(input:checked){border-color:var(--principal);background:#eff7fb;color:var(--principal);font-weight:600}
+.nota-master{margin-top:18px;background:#eff7fb;border:1px solid #d7eaf4;border-radius:14px;padding:15px 16px;font-size:13.5px;line-height:1.55}.nota-master b{color:var(--principal)}
+.separador-dados{margin:28px 0 22px;border-top:1px solid var(--borda);padding-top:22px}.separador-dados h4{font-size:16px;margin-bottom:4px}.separador-dados p{font-size:12.5px;color:var(--suave)}
+.campo.mau .multi label,.campo.mau .valor-grande{border-color:var(--erro);background:var(--erro-bg)}
+
 </style>
 <script>
 var PIXEL_ID    = '1362604455287759';
 var WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/GDVviUEQV7vi5vKVVdyV/webhook-trigger/Xnq2Kxs7WHtXHPzVy9BV';
 var ORIGEM      = 'Master Business Check-Up NewBroker';
 var PREFIXO_PAIS = '351';
-var CHAVE_UNICA = 'recrutamento_newbrokermaster';
+var CHAVE_UNICA = 'master_business_checkup_newbrokermaster';
 var CHAVE_CONSENTIMENTO = CHAVE_UNICA + '_cookies';
 var WHATSAPP_NUM = '351966157771';
 var INSTAGRAM    = 'https://www.instagram.com/newbrokermaster/';
@@ -244,336 +259,25 @@ if (temConsentimento()) carregarPixel();
 </script>
 </head>
 <body>
-<header class="home">
-  <div class="palco">
-    <img class="palco-bg" alt="Cozinha moderna" src="hero.jpg" fetchpriority="high" decoding="async">
-    <div class="barra">
-      <a class="marca" href="#" onclick="return false" aria-label="NewBroker Master Imobiliária">
-        <img src="logo_branca.png" alt="NewBroker Master" class="marca-logo">
-      </a>
-      <span class="barra-sel">Master Business Check-Up</span>
-    </div>
-    <div class="chamada">
-      <span class="tag"><i aria-hidden="true"></i> Master Business Check-Up</span>
-      <h1 class="serif">Trabalhas no imobiliário? <em>Mas o teu negócio está a crescer ao ritmo que deveria?</em></h1>
-      <p class="sub">Faz um diagnóstico rápido à tua operação atual e identifica onde pode estar o próximo ponto de crescimento.</p>
-      <div class="acao">
-        <button class="btn-inicio" onclick="irParaQuiz()">
-          Fazer diagnóstico
-          <span class="seta" aria-hidden="true">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
-          </span>
-        </button>
-      </div>
-      <div class="selos">
-        <div class="selo"><b>3</b><span>minutos</span></div>
-        <div class="selo"><b>Privado</b><span>confidencial</span></div>
-        <div class="selo"><b>0 €</b><span>sem compromisso</span></div>
-        <div class="selo"><b>Rápido</b><span>resultado imediato</span></div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main class="quiz-zona" id="quiz-zona">
-  <div class="quiz-topo">
-    <div class="kicker">Master Business Check-Up</div>
-    <h2 class="serif">Uma primeira leitura do teu <em>negócio imobiliário</em></h2>
-  </div>
-
-  <section class="quiz" id="quiz">
-    <div class="prog-topo">
-      <span id="lbl-passo">Passo 1 de 2</span>
-      <b id="lbl-pct">50%</b>
-    </div>
-    <div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Progresso do simulador">
-      <i id="barra"></i>
-    </div>
-
-    <div class="passo on" data-p="1">
-      <h3 class="serif">Comecemos pelo teu ponto de partida</h3>
-      <p class="intro">Uma pergunta rápida para enquadrar a tua situação atual.</p>
-
-      <div class="campo" data-c="experiencia">
-        <span class="rot" id="r-experiencia">Já tens experiência no mercado imobiliário?
-          <small>Escolha a opção que melhor descreve a sua situação.</small>
-        </span>
-        <div class="opcoes" role="group" aria-labelledby="r-experiencia" data-grupo="experiencia">
-          <button type="button" class="op" aria-pressed="false" data-v="Sim, já tenho experiência">Sim, já tenho experiência</button>
-          <button type="button" class="op" aria-pressed="false" data-v="Não, procuro a minha oportunidade">Não, procuro a minha oportunidade</button>
-        </div>
-        <p class="msg-erro">Escolha uma opção para continuar.</p>
-      </div>
-    </div>
-
-    <div class="passo" data-p="2">
-      <h3 class="serif">Agora deixa os teus dados</h3>
-      <p class="intro">No final, recebe uma primeira leitura e a nossa equipa poderá entrar em contacto contigo.</p>
-
-      <div class="campo" data-c="nome">
-        <label class="rot" for="i-nome">Nome completo</label>
-        <input type="text" id="i-nome" placeholder="O teu nome completo">
-        <p class="msg-erro">Preenche o teu nome completo.</p>
-      </div>
-
-      <div class="campo" data-c="email">
-        <label class="rot" for="i-email">E-mail</label>
-        <input type="email" id="i-email" placeholder="nome@exemplo.com">
-        <p class="msg-erro">Introduz um e-mail válido.</p>
-      </div>
-
-      <div class="campo" data-c="tel">
-        <label class="rot" for="i-tel">Telemóvel</label>
-        <input type="tel" id="i-tel" placeholder="912 345 678">
-        <p class="msg-erro">Introduz um número de telemóvel válido.</p>
-      </div>
-
-      <div class="campo" data-c="rgpd">
-        <div class="consent">
-          <input type="checkbox" id="i-rgpd">
-          <label for="i-rgpd">Autorizo o tratamento dos meus dados para contacto relativo ao Master Business Check-Up da NewBroker Master.</label>
-        </div>
-        <p class="msg-erro">Precisas de dar consentimento para continuar.</p>
-      </div>
-    </div>
-
-    <div class="navs">
-      <button type="button" class="btn btn-s" id="btn-voltar" onclick="voltar()" style="display:none">Voltar</button>
-      <button type="button" class="btn btn-p" id="btn-avancar" onclick="avancar()">Continuar</button>
-    </div>
-  </section>
-</main>
-
-<footer class="rodape">
-  NewBroker Master · Master Business Check-Up
-</footer>
-
-<div class="cookies" id="cookies">
-  <p>Utilizamos cookies para melhorar a experiência e medir o desempenho do diagnóstico. Pode aceitar ou recusar.</p>
-  <div class="linha">
-    <button class="ck-nao" onclick="definirConsentimento('recusado')">Recusar</button>
-    <button class="ck-sim" onclick="definirConsentimento('aceite')">Aceitar</button>
-  </div>
-</div>
-
+<header class="home"><div class="palco"><img class="palco-bg" alt="Interior imobiliário NewBroker Master" src="hero.jpg" fetchpriority="high" decoding="async"><div class="barra"><a class="marca" href="#" onclick="return false" aria-label="NewBroker Master Imobiliária"><img src="logo_branca.png" alt="NewBroker Master" class="marca-logo"></a><span class="barra-sel">Master Business Check-Up</span></div><div class="chamada"><span class="tag"><i aria-hidden="true"></i> Master Business Check-Up</span><h1 class="serif">Trabalhas no imobiliário. <em>Mas o teu negócio está a crescer ao ritmo que deveria?</em></h1><p class="sub">Faz um diagnóstico rápido à tua operação atual e identifica onde pode estar o próximo ponto de crescimento.</p><div class="acao"><button class="btn-inicio" onclick="irParaQuiz()">Começar check-up<span class="seta" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span></button></div><div class="selos"><div class="selo"><b>3</b><span>minutos</span></div><div class="selo"><b>7</b><span>pontos analisados</span></div><div class="selo"><b>100%</b><span>confidencial</span></div><div class="selo"><b>0 €</b><span>sem compromisso</span></div></div></div></div></header>
+<main class="quiz-zona" id="quiz-zona"><div class="quiz-topo"><div class="kicker">Master Business Check-Up</div><h2 class="serif">Diagnostica o teu negócio e encontra o <em>próximo ponto de crescimento</em></h2></div><section class="quiz" id="quiz"><div class="prog-topo"><span id="lbl-passo">Passo 1 de 7</span><b id="lbl-pct">14%</b></div><div class="prog" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="14"><i id="barra" style="width:14%"></i></div>
+<div class="passo on" data-p="1"><h3 class="serif">Quanto produziste nos últimos 12 meses?</h3><p class="intro">Volume de faturação/comissões geradas.</p><div class="campo" data-c="producao"><label class="rot" for="i-producao">Produção nos últimos 12 meses</label><div class="valor-grande"><span class="prefixo">€</span><input type="number" min="0" step="500" id="i-producao" placeholder="55 000"></div><p class="msg-erro">Indica a produção dos últimos 12 meses.</p></div></div>
+<div class="passo" data-p="2"><h3 class="serif">Quantos negócios concluíste?</h3><p class="intro">O sistema calcula automaticamente a tua produção média por negócio.</p><div class="campo" data-c="negocios"><label class="rot" for="i-negocios">Negócios concluídos</label><div class="unidade"><input type="number" min="0" step="1" id="i-negocios" placeholder="12"><span>negócios</span></div><p class="msg-erro">Indica quantos negócios concluíste.</p></div></div>
+<div class="passo" data-p="3"><h3 class="serif">Quanto da tua produção fica contigo?</h3><p class="intro">Indica a percentagem aproximada que efetivamente fica contigo.</p><div class="campo" data-c="percentagem"><div class="range-wrap"><div class="range-topo"><span>30%</span><strong id="v-percentagem">70%</strong><span>100%</span></div><input type="range" id="i-percentagem" min="30" max="100" step="1" value="70"></div></div></div>
+<div class="passo" data-p="4"><h3 class="serif">Quanto queres produzir em 2027?</h3><p class="intro">Define um objetivo concreto. O sistema calcula automaticamente o teu gap de crescimento.</p><div class="campo" data-c="objetivo"><label class="rot" for="i-objetivo">Objetivo de produção 2027</label><div class="valor-grande"><span class="prefixo">€</span><input type="number" min="0" step="500" id="i-objetivo" placeholder="80 000"></div><p class="msg-erro">Indica o teu objetivo de produção para 2027.</p></div></div>
+<div class="passo" data-p="5"><h3 class="serif">Na tua opinião, o que mais está a limitar esse crescimento?</h3><p class="intro">Podes selecionar mais do que uma opção.</p><div class="campo" data-c="bloqueios"><div class="multi" id="g-bloqueios"><label><input type="checkbox" value="Falta de leads qualificadas">Falta de leads qualificadas</label><label><input type="checkbox" value="Captação/angariação">Captação/angariação</label><label><input type="checkbox" value="Marketing dos imóveis">Marketing dos imóveis</label><label><input type="checkbox" value="Marca pessoal">Marca pessoal</label><label><input type="checkbox" value="Falta de acompanhamento estratégico">Falta de acompanhamento estratégico</label><label><input type="checkbox" value="Estrutura administrativa/processual">Estrutura administrativa/processual</label><label><input type="checkbox" value="Modelo de comissões">Modelo de comissões</label><label><input type="checkbox" value="Falta de tempo">Falta de tempo</label><label><input type="checkbox" value="Tecnologia/CRM">Tecnologia/CRM</label><label><input type="checkbox" value="Construção de equipa">Construção de equipa</label><label><input type="checkbox" value="Outro">Outro</label></div><p class="msg-erro">Seleciona pelo menos uma opção.</p></div></div>
+<div class="passo" data-p="6"><h3 class="serif">Onde estás a gastar tempo que deveria estar a ser usado para produzir?</h3><p class="intro">Identifica as tarefas que mais te afastam de clientes, angariações e negócios.</p><div class="campo" data-c="tempo"><div class="multi" id="g-tempo"><label><input type="checkbox" value="Marketing/conteúdos">Marketing/conteúdos</label><label><input type="checkbox" value="Processos/documentação">Processos/documentação</label><label><input type="checkbox" value="Follow-up">Follow-up</label><label><input type="checkbox" value="Prospeção">Prospeção</label><label><input type="checkbox" value="Gestão de leads">Gestão de leads</label><label><input type="checkbox" value="Crédito/financiamento">Crédito/financiamento</label><label><input type="checkbox" value="Administração">Administração</label><label><input type="checkbox" value="Não sinto esse problema">Não sinto esse problema</label><label><input type="checkbox" value="Outro">Outro</label></div><p class="msg-erro">Seleciona pelo menos uma opção.</p><div class="nota-master"><b>Um consultor experiente deveria passar a maior parte do seu tempo onde cria mais valor:</b> clientes, angariações e negócios.</div></div></div>
+<div class="passo" data-p="7"><h3 class="serif">De 0 a 10, quanto sentes que a tua estrutura atual contribui para o teu crescimento?</h3><p class="intro">0 significa “não contribui” e 10 significa “potencia totalmente o meu crescimento”.</p><div class="campo" data-c="estrutura"><div class="range-wrap"><div class="range-topo"><span>0</span><strong id="v-estrutura">5/10</strong><span>10</span></div><input type="range" id="i-estrutura" min="0" max="10" step="1" value="5"></div></div><div class="separador-dados"><h4>Para veres o teu resultado</h4><p>Deixa os teus dados. O teu check-up é confidencial.</p></div><div class="campo" data-c="nome"><label class="rot" for="i-nome">Nome completo</label><input type="text" id="i-nome" placeholder="O teu nome completo"><p class="msg-erro">Preenche o teu nome completo.</p></div><div class="campo" data-c="email"><label class="rot" for="i-email">E-mail</label><input type="email" id="i-email" placeholder="nome@exemplo.com"><p class="msg-erro">Introduz um e-mail válido.</p></div><div class="campo" data-c="tel"><label class="rot" for="i-tel">Telemóvel</label><input type="tel" id="i-tel" placeholder="912 345 678"><p class="msg-erro">Introduz um número de telemóvel válido.</p></div><div class="campo" data-c="rgpd"><div class="consent"><input type="checkbox" id="i-rgpd"><label for="i-rgpd">Autorizo o tratamento dos meus dados para contacto relativo ao Master Business Check-Up da NewBroker Master.</label></div><p class="msg-erro">Precisas de dar consentimento para continuar.</p></div></div>
+<div class="navs"><button type="button" class="btn btn-s" id="btn-voltar" onclick="voltar()" style="display:none">Voltar</button><button type="button" class="btn btn-p" id="btn-avancar" onclick="avancar()">Continuar</button></div></section></main><footer class="rodape">NewBroker Master · Master Business Check-Up</footer><div class="cookies" id="cookies"><p>Utilizamos cookies para melhorar a experiência e medir o desempenho do check-up.</p><div class="linha"><button class="ck-nao" onclick="definirConsentimento('recusado')">Recusar</button><button class="ck-sim" onclick="definirConsentimento('aceite')">Aceitar</button></div></div>
 <script>
-var passo = 1;
-var totalPassos = 2;
-var A = {
-  experiencia:'',
-  nome:'',
-  email:'',
-  tel:'',
-  rgpd:false
-};
-var aEnviar = false;
-
-function irParaQuiz(){
-  document.getElementById('quiz-zona').scrollIntoView({ behavior:'smooth', block:'start' });
-}
-
-function definirConsentimento(valor){
-  try { localStorage.setItem(CHAVE_CONSENTIMENTO, valor); } catch(e){}
-  document.getElementById('cookies').classList.remove('on');
-  if(valor === 'aceite') carregarPixel();
-}
-(function iniciarCookies(){
-  var c = null;
-  try { c = localStorage.getItem(CHAVE_CONSENTIMENTO); } catch(e){}
-  if(c !== 'aceite' && c !== 'recusado'){
-    window.addEventListener('load', function(){
-      document.getElementById('cookies').classList.add('on');
-    });
-  }
-})();
-
-function qs(sel,ctx){ return (ctx||document).querySelector(sel); }
-function qsa(sel,ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
-
-qsa('[data-grupo]').forEach(function(grupo){
-  grupo.addEventListener('click', function(ev){
-    var btn = ev.target.closest('.op');
-    if(!btn) return;
-    qsa('.op', grupo).forEach(function(el){ el.setAttribute('aria-pressed','false'); });
-    btn.setAttribute('aria-pressed','true');
-    var campo = grupo.closest('.campo');
-    if(campo) campo.classList.remove('mau');
-  });
-});
-
-['i-nome','i-email','i-tel'].forEach(function(id){
-  var el = document.getElementById(id);
-  el.addEventListener('input', function(){
-    var campo = this.closest('.campo');
-    if(campo) campo.classList.remove('mau');
-  });
-});
-document.getElementById('i-rgpd').addEventListener('change', function(){
-  this.closest('.campo').classList.remove('mau');
-});
-
-function atualizarUI(){
-  qsa('.passo').forEach(function(el){ el.classList.remove('on'); });
-  var passoEl = qs('.passo[data-p="'+passo+'"]');
-  if(passoEl) passoEl.classList.add('on');
-  var pct = Math.round((passo/totalPassos)*100);
-  qs('#lbl-passo').textContent = 'Passo ' + passo + ' de ' + totalPassos;
-  qs('#lbl-pct').textContent = pct + '%';
-  qs('#barra').style.width = pct + '%';
-  qs('.prog').setAttribute('aria-valuenow', pct);
-  qs('#btn-voltar').style.display = passo === 1 ? 'none' : 'inline-flex';
-  qs('#btn-avancar').textContent = passo === totalPassos ? 'Ver resultado' : 'Continuar';
-}
-
-function validarPasso1(){
-  var campo = qs('[data-c="experiencia"]');
-  var ativo = qs('.op[aria-pressed="true"]', campo);
-  if(!ativo){ campo.classList.add('mau'); return false; }
-  A.experiencia = ativo.getAttribute('data-v');
-  return true;
-}
-
-function emailValido(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim()); }
-function telValido(v){
-  var d = (v||'').replace(/\D/g,'');
-  return d.length >= 9;
-}
-function normalizarTel(v){
-  var d = (v || '').replace(/\D/g,'');
-  if(!d) return '';
-  if(d.indexOf('00') === 0) d = d.slice(2);
-  if(d.length === 9) d = PREFIXO_PAIS + d;
-  return '+' + d;
-}
-
-function validarPasso2(){
-  var ok = true;
-  var nome = qs('#i-nome').value.trim();
-  var email = qs('#i-email').value.trim();
-  var tel = qs('#i-tel').value.trim();
-  var rgpd = qs('#i-rgpd').checked;
-
-  var cNome = qs('[data-c="nome"]');
-  var cEmail = qs('[data-c="email"]');
-  var cTel = qs('[data-c="tel"]');
-  var cRgpd = qs('[data-c="rgpd"]');
-  [cNome,cEmail,cTel,cRgpd].forEach(function(c){ c.classList.remove('mau'); });
-
-  if(nome.length < 4){ cNome.classList.add('mau'); ok = false; }
-  if(!emailValido(email)){ cEmail.classList.add('mau'); ok = false; }
-  if(!telValido(tel)){ cTel.classList.add('mau'); ok = false; }
-  if(!rgpd){ cRgpd.classList.add('mau'); ok = false; }
-  if(!ok) return false;
-
-  A.nome = nome;
-  A.email = email;
-  A.tel = tel;
-  A.rgpd = rgpd;
-  return true;
-}
-
-function avancar(){
-  if(aEnviar) return;
-  var valido = passo === 1 ? validarPasso1() : validarPasso2();
-  if(!valido) return;
-  if(passo < totalPassos){
-    passo++;
-    atualizarUI();
-    window.scrollTo({top: document.getElementById('quiz-zona').offsetTop - 10, behavior:'smooth'});
-    return;
-  }
-  finalizar();
-}
-
-function voltar(){
-  if(passo === 1 || aEnviar) return;
-  passo--;
-  atualizarUI();
-  window.scrollTo({top: document.getElementById('quiz-zona').offsetTop - 10, behavior:'smooth'});
-}
-
-function avaliarPerfil(){
-  var comExp = A.experiencia === 'Sim, já tenho experiência';
-  return {
-    perfil: comExp ? 'Primeira leitura concluída' : 'Ponto de partida identificado',
-    nota: comExp
-      ? 'Já tens experiência no mercado imobiliário. O próximo passo é perceber com mais detalhe onde está a maior oportunidade de crescimento na tua operação.'
-      : 'Ainda não tens experiência no mercado imobiliário. Esta primeira leitura ajuda a enquadrar o teu ponto de partida e os próximos passos.'
-  };
-}
-
-function enviarWebhook(tel, first, last, D, eventId){
-  var payload = {
-    name: A.nome,
-    first_name: first,
-    last_name: last,
-    phone: tel,
-    email: A.email,
-    timestamp: new Date().toISOString(),
-    origem: ORIGEM,
-    pagina_url: window.location.href,
-    event_id: eventId,
-    consentimento_rgpd: A.rgpd ? 'Sim' : 'Não',
-    experiencia_imobiliaria: A.experiencia || '',
-    perfil_indicativo: D.perfil,
-    nota_perfil: D.nota,
-    raw: JSON.parse(JSON.stringify(A))
-  };
-
-  if(!WEBHOOK_ATIVO){
-    console.log('[MODO DEMO] Payload que seria enviado ao webhook:', payload);
-    return;
-  }
-
-  fetch(WEBHOOK_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    keepalive: true,
-    body: JSON.stringify(payload)
-  }).catch(function(err){
-    console.error('Falha no envio do webhook:', err);
-  });
-}
-
-function finalizar(){
-  if(aEnviar) return;
-  aEnviar = true;
-  var btn = qs('#btn-avancar');
-  btn.disabled = true;
-  btn.textContent = 'A preparar o teu diagnóstico…';
-
-  var D = avaliarPerfil();
-  var tel = normalizarTel(A.tel);
-  var partes = (A.nome || '').trim().split(/\s+/);
-  var first = partes[0] || '';
-  var last = partes.slice(1).join(' ') || '';
-  var eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
-
-  try {
-    sessionStorage.setItem(CHAVE_UNICA, JSON.stringify({ A:A, D:D, eventId:eventId, ts:Date.now() }));
-  } catch(e){}
-
-  if(PIXEL_ATIVO && typeof fbq === 'function' && temConsentimento()){
-    fbq('init', PIXEL_ID, { em: A.email, ph: tel, fn: first, ln: last });
-    fbq('track','Lead', {
-      content_name: 'Master Business Check-Up',
-      content_category: 'Diagnóstico de Negócio Imobiliário'
-    }, { eventID: eventId });
-  }
-
-  enviarWebhook(tel, first, last, D, eventId);
-
-  var jaFoi = false;
-  var ir = function(){
-    if(jaFoi) return;
-    jaFoi = true;
-    window.location.href = 'resultado.html';
-  };
-  setTimeout(ir, 700);
-  setTimeout(ir, 2200);
-}
-
-atualizarUI();
-</script>
-</body>
-</html>
+var passo=1,totalPassos=7,A={producao:0,negocios:0,percentagem:70,objetivo:0,bloqueios:[],tempo:[],estrutura:5,nome:'',email:'',tel:'',rgpd:false},aEnviar=false;
+function irParaQuiz(){document.getElementById('quiz-zona').scrollIntoView({behavior:'smooth',block:'start'})}function definirConsentimento(v){try{localStorage.setItem(CHAVE_CONSENTIMENTO,v)}catch(e){}document.getElementById('cookies').classList.remove('on');if(v==='aceite')carregarPixel()}(function(){var c=null;try{c=localStorage.getItem(CHAVE_CONSENTIMENTO)}catch(e){}if(c!=='aceite'&&c!=='recusado')window.addEventListener('load',function(){document.getElementById('cookies').classList.add('on')})})();
+function qs(s,c){return(c||document).querySelector(s)}function qsa(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}['i-producao','i-negocios','i-objetivo','i-nome','i-email','i-tel'].forEach(function(id){var e=document.getElementById(id);if(e)e.addEventListener('input',function(){var c=this.closest('.campo');if(c)c.classList.remove('mau')})});qsa('.multi input').forEach(function(e){e.addEventListener('change',function(){var c=this.closest('.campo');if(c)c.classList.remove('mau')})});document.getElementById('i-rgpd').addEventListener('change',function(){this.closest('.campo').classList.remove('mau')});document.getElementById('i-percentagem').addEventListener('input',function(){document.getElementById('v-percentagem').textContent=this.value+'%'});document.getElementById('i-estrutura').addEventListener('input',function(){document.getElementById('v-estrutura').textContent=this.value+'/10'});
+function atualizarUI(){qsa('.passo').forEach(function(e){e.classList.remove('on')});var e=qs('.passo[data-p="'+passo+'"]');if(e)e.classList.add('on');var p=Math.round(passo/totalPassos*100);qs('#lbl-passo').textContent='Passo '+passo+' de '+totalPassos;qs('#lbl-pct').textContent=p+'%';qs('#barra').style.width=p+'%';qs('.prog').setAttribute('aria-valuenow',p);qs('#btn-voltar').style.display=passo===1?'none':'inline-flex';qs('#btn-avancar').textContent=passo===totalPassos?'Ver o meu check-up':'Continuar'}
+function err(c,ok){c.classList.toggle('mau',!ok);return ok}function sels(id){return qsa('#'+id+' input:checked').map(function(x){return x.value})}function emailValido(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((v||'').trim())}function telValido(v){return(v||'').replace(/\D/g,'').length>=9}function normalizarTel(v){var d=(v||'').replace(/\D/g,'');if(!d)return'';if(d.indexOf('00')===0)d=d.slice(2);if(d.length===9)d=PREFIXO_PAIS+d;return'+'+d}
+function validarAtual(){if(passo===1){var v=Number(qs('#i-producao').value);if(!err(qs('[data-c="producao"]'),v>=0&&qs('#i-producao').value!==''))return false;A.producao=v}if(passo===2){var v=Number(qs('#i-negocios').value);if(!err(qs('[data-c="negocios"]'),v>=0&&Number.isInteger(v)&&qs('#i-negocios').value!==''))return false;A.negocios=v}if(passo===3)A.percentagem=Number(qs('#i-percentagem').value);if(passo===4){var v=Number(qs('#i-objetivo').value);if(!err(qs('[data-c="objetivo"]'),v>=0&&qs('#i-objetivo').value!==''))return false;A.objetivo=v}if(passo===5){A.bloqueios=sels('g-bloqueios');if(!err(qs('[data-c="bloqueios"]'),A.bloqueios.length>0))return false}if(passo===6){A.tempo=sels('g-tempo');if(!err(qs('[data-c="tempo"]'),A.tempo.length>0))return false}if(passo===7){A.estrutura=Number(qs('#i-estrutura').value);A.nome=qs('#i-nome').value.trim();A.email=qs('#i-email').value.trim();A.tel=qs('#i-tel').value.trim();A.rgpd=qs('#i-rgpd').checked;var ok=true;ok=err(qs('[data-c="nome"]'),A.nome.length>=4)&&ok;ok=err(qs('[data-c="email"]'),emailValido(A.email))&&ok;ok=err(qs('[data-c="tel"]'),telValido(A.tel))&&ok;ok=err(qs('[data-c="rgpd"]'),A.rgpd)&&ok;if(!ok)return false}return true}
+function avancar(){if(aEnviar)return;if(!validarAtual())return;if(passo<totalPassos){passo++;atualizarUI();window.scrollTo({top:document.getElementById('quiz-zona').offsetTop-10,behavior:'smooth'});return}finalizar()}function voltar(){if(passo===1||aEnviar)return;passo--;atualizarUI();window.scrollTo({top:document.getElementById('quiz-zona').offsetTop-10,behavior:'smooth'})}
+function calcularDiagnostico(){var media=A.negocios>0?A.producao/A.negocios:0,gap=A.objetivo-A.producao,cres=A.producao>0?(A.objetivo/A.producao-1)*100:null,p=A.bloqueios.slice(0,2);while(p.length<2)p.push('Sem segundo bloqueio indicado');return{media_negocio:media,gap:gap,crescimento:cres,principais:p}}
+function enviarWebhook(tel,first,last,D,eventId){var payload={name:A.nome,first_name:first,last_name:last,phone:tel,email:A.email,timestamp:new Date().toISOString(),origem:ORIGEM,pagina_url:window.location.href,event_id:eventId,consentimento_rgpd:A.rgpd?'Sim':'Não',producao_12_meses:A.producao,negocios_concluidos:A.negocios,producao_media_por_negocio:D.media_negocio,percentagem_producao_retida:A.percentagem,objetivo_producao_2027:A.objetivo,gap_crescimento:D.gap,objetivo_crescimento_percentual:D.crescimento,bloqueios_crescimento:A.bloqueios.join(' | '),tempo_desviado_da_producao:A.tempo.join(' | '),estrutura_contribui_crescimento:A.estrutura,principais_bloqueios:D.principais.join(' | '),raw:JSON.parse(JSON.stringify(A))};if(!WEBHOOK_ATIVO){console.log('[MODO DEMO] Payload:',payload);return}fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify(payload)}).catch(function(e){console.error('Falha no webhook:',e)})}
+function finalizar(){if(aEnviar)return;aEnviar=true;var b=qs('#btn-avancar');b.disabled=true;b.textContent='A preparar o teu check-up…';var D=calcularDiagnostico(),tel=normalizarTel(A.tel),parts=(A.nome||'').trim().split(/\s+/),first=parts[0]||'',last=parts.slice(1).join(' ')||'',eventId='lead-'+Date.now()+'-'+Math.random().toString(36).slice(2,8);try{sessionStorage.setItem(CHAVE_UNICA,JSON.stringify({A:A,D:D,eventId:eventId,ts:Date.now()}))}catch(e){}if(PIXEL_ATIVO&&typeof fbq==='function'&&temConsentimento()){fbq('init',PIXEL_ID,{em:A.email,ph:tel,fn:first,ln:last});fbq('track','Lead',{content_name:'Master Business Check-Up',content_category:'Diagnóstico de Crescimento Imobiliário'},{eventID:eventId})}enviarWebhook(tel,first,last,D,eventId);var done=false,go=function(){if(done)return;done=true;window.location.href='resultado.html'};setTimeout(go,700);setTimeout(go,2200)}atualizarUI();
+</script></body></html>
